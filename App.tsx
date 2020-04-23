@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 import { useFonts } from "@use-expo/font";
 import { Ionicons } from "@expo/vector-icons";
 import { AppLoading } from "expo";
@@ -27,12 +26,3 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
