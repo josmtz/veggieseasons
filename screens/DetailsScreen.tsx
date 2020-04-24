@@ -7,7 +7,7 @@ import { ScrollView, BorderlessButton } from "react-native-gesture-handler";
 import { useSafeArea } from "react-native-safe-area-context";
 import * as StyledText from "../components/StyledText";
 import * as SeasonIcons from "../components/SeasonIcons";
-import Spacer from "../components/Spacer";
+import * as Spacer from "../components/Spacer";
 import { Season, ProduceItem } from "../types";
 
 type Params = { item: ProduceItem };
@@ -30,7 +30,7 @@ export default function DetailsScreen({ navigation, route }: Props) {
             setSelectedIndex(nativeEvent.selectedSegmentIndex)
           }
         />
-        <Spacer size={10} />
+        <Spacer.Vertical size={10} />
         <View style={{ padding: 10 }}>
           {selectedIndex === 0 ? <Facts item={item} /> : <Trivia item={item} />}
         </View>
@@ -46,18 +46,18 @@ function Facts({ item }: { item: ProduceItem }) {
         <StyledText.Regular style={{ fontSize: 15 }}>
           {item.category.toUpperCase()}
         </StyledText.Regular>
-        <SpaceBetween size={10} style={styles.seasonsIconsContainer}>
+        <SpaceBetween size={7} style={styles.seasonsIconsContainer}>
           {item.seasons.includes(Season.winter) && <SeasonIcons.Winter />}
           {item.seasons.includes(Season.spring) && <SeasonIcons.Spring />}
           {item.seasons.includes(Season.summer) && <SeasonIcons.Summer />}
           {item.seasons.includes(Season.autumn) && <SeasonIcons.Autumn />}
         </SpaceBetween>
       </View>
-      <Spacer size={5} />
+      <Spacer.Vertical size={5} />
       <StyledText.Title>{item.name}</StyledText.Title>
-      <Spacer size={5} />
+      <Spacer.Vertical size={5} />
       <StyledText.Regular>{item.shortDescription}</StyledText.Regular>
-      <Spacer size={5} />
+      <Spacer.Vertical size={5} />
     </>
   );
 }

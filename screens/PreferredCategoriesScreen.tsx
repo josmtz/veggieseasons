@@ -1,9 +1,8 @@
 import * as React from "react";
 import { View } from "react-native";
 import * as StyledText from "../components/StyledText";
-import * as Spacer from "../components/Spacer";
 
-export default function MyGardenScreen() {
+export default function SearchScreen() {
   return (
     <View
       style={{
@@ -14,14 +13,8 @@ export default function MyGardenScreen() {
       }}
     >
       <StyledText.Regular style={{ textAlign: "center" }}>
-        You haven't added any favourite veggies to your garden yet.
+        TODO
       </StyledText.Regular>
-      <Spacer.Vertical size={10} />
-      <StyledText.Secondary>
-        <StyledText.Italic>
-          (actually, this isn't implemented 😇)
-        </StyledText.Italic>
-      </StyledText.Secondary>
     </View>
   );
 }

@@ -2,6 +2,7 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import { Ionicons } from "@expo/vector-icons";
 
 import DetailsScreen from "./screens/DetailsScreen";
@@ -9,6 +10,8 @@ import HomeScreen from "./screens/HomeScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import MyGardenScreen from "./screens/MyGardenScreen";
 import SearchScreen from "./screens/SearchScreen";
+import CalorieTargetScreen from "./screens/CalorieTargetScreen";
+import PreferredCategoriesScreen from "./screens/PreferredCategoriesScreen";
 
 const HomeStack = createStackNavigator();
 function Home() {
@@ -53,6 +56,29 @@ function Search() {
   );
 }
 
+const SettingsStack = createNativeStackNavigator();
+function Settings() {
+  return (
+    <SettingsStack.Navigator>
+      <SettingsStack.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{ headerLargeTitle: true }}
+      />
+      <SettingsStack.Screen
+        name="CalorieTarget"
+        options={{title: "Calorie Target"}}
+        component={CalorieTargetScreen}
+      />
+      <SettingsStack.Screen
+        name="PreferredCategories"
+        options={{title: "Preferred Categories"}}
+        component={PreferredCategoriesScreen}
+      />
+    </SettingsStack.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
 export default function Navigation() {
   return (
@@ -71,7 +97,7 @@ export default function Navigation() {
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="My Garden" component={MyGarden} />
         <Tab.Screen name="Search" component={Search} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>
     </NavigationContainer>
   );
