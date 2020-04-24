@@ -1,15 +1,21 @@
 import * as React from "react";
-import { Image, StyleSheet, SegmentedControlIOS, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  SegmentedControlIOS,
+  Switch,
+  View,
+} from "react-native";
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 import { ScrollView, BorderlessButton } from "react-native-gesture-handler";
-import { useSafeArea } from "react-native-safe-area-context";
 
 import * as StyledText from "../components/StyledText";
 import * as SeasonIcons from "../components/SeasonIcons";
 import * as Spacer from "../components/Spacer";
-import SpaceBetween from '../components/SpaceBetween';
+import SpaceBetween from "../components/SpaceBetween";
+import ServingInfoTable from "../components/ServingInfoTable";
 
 import { Season, ProduceItem } from "../types";
 
@@ -60,13 +66,38 @@ function Facts({ item }: { item: ProduceItem }) {
       <StyledText.Title>{item.name}</StyledText.Title>
       <Spacer.Vertical size={5} />
       <StyledText.Regular>{item.shortDescription}</StyledText.Regular>
-      <Spacer.Vertical size={5} />
+      <Spacer.Vertical size={15} />
+      <ServingInfoTable item={item} />
+      <Spacer.Vertical size={25} />
+      <SaveToGardenButton id={item.id} />
     </>
   );
 }
 
+function SaveToGardenButton({ id }: { id: number }) {
+  const [isSaved, setIsSaved] = React.useState(false);
+
+  return (
+    <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <Switch onValueChange={(value) => setIsSaved(value)} value={isSaved} />
+      <Spacer.Horizontal size={10} />
+      <StyledText.Regular style={{ fontSize: 15 }}>
+        Save to Garden
+      </StyledText.Regular>
+    </View>
+  );
+}
+
 function Trivia({ item }: { item: ProduceItem }) {
-  return <StyledText.Title>Trivia</StyledText.Title>;
+  return (
+    <>
+      <StyledText.Title>Trivia</StyledText.Title>
+      <Spacer.Vertical size={15} />
+      <StyledText.Italic>
+        Trivia would go here, but it seemed not so interesting to implement.
+      </StyledText.Italic>
+    </>
+  );
 }
 
 function Header({
@@ -76,8 +107,6 @@ function Header({
   navigation: DetailsNavigationProp;
   item: ProduceItem;
 }) {
-  const { top } = useSafeArea();
-
   return (
     <>
       <View style={styles.header}>
@@ -94,7 +123,7 @@ function Header({
       <BorderlessButton
         activeOpacity={0.9}
         onPress={() => navigation.goBack()}
-        style={[styles.closeButton, { top }]}
+        style={[styles.closeButton, { top: 15 }]}
       >
         <Ionicons
           name="ios-close"

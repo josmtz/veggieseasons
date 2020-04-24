@@ -2,6 +2,7 @@
   "expo": {
     "name": "veg-seasons",
     "slug": "veg-seasons",
+    "userInterfaceStyle": "light",
     "platforms": [
       "ios",
       "android",

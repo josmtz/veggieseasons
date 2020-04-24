@@ -13,13 +13,15 @@ import SearchScreen from "./screens/SearchScreen";
 import CalorieTargetScreen from "./screens/CalorieTargetScreen";
 import PreferredCategoriesScreen from "./screens/PreferredCategoriesScreen";
 
-const HomeStack = createStackNavigator();
+const HomeStack = createNativeStackNavigator();
 function Home() {
   return (
     <HomeStack.Navigator
-      headerMode="none"
-      mode="modal"
-      screenOptions={{ cardStyle: { backgroundColor: "#fff" } }}
+      screenOptions={{
+        headerShown: false,
+        contentStyle: { backgroundColor: "#fff" },
+        stackPresentation: "modal",
+      }}
     >
       <HomeStack.Screen name="List" component={HomeScreen} />
       <HomeStack.Screen name="Details" component={DetailsScreen} />
@@ -44,13 +46,15 @@ function MyGarden() {
   );
 }
 
-const SearchStack = createStackNavigator();
+const SearchStack = createNativeStackNavigator();
 function Search() {
   return (
     <SearchStack.Navigator
-      headerMode="none"
-      mode="modal"
-      screenOptions={{ cardStyle: { backgroundColor: "#fff" } }}
+      screenOptions={{
+        headerShown: false,
+        contentStyle: { backgroundColor: "#fff" },
+        stackPresentation: "modal",
+      }}
     >
       <SearchStack.Screen name="Search" component={SearchScreen} />
       <SearchStack.Screen name="Details" component={DetailsScreen} />
@@ -69,12 +73,12 @@ function Settings() {
       />
       <SettingsStack.Screen
         name="CalorieTarget"
-        options={{title: "Calorie Target"}}
+        options={{ title: "Calorie Target" }}
         component={CalorieTargetScreen}
       />
       <SettingsStack.Screen
         name="PreferredCategories"
-        options={{title: "Preferred Categories"}}
+        options={{ title: "Preferred Categories" }}
         component={PreferredCategoriesScreen}
       />
     </SettingsStack.Navigator>
