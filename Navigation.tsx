@@ -32,6 +32,7 @@ function MyGarden() {
   return (
     <MyGardenStack.Navigator
       screenOptions={{ cardStyle: { backgroundColor: "#fff" } }}
+      mode="modal"
     >
       <MyGardenStack.Screen
         name="GardenList"
@@ -48,6 +49,7 @@ function Search() {
   return (
     <SearchStack.Navigator
       headerMode="none"
+      mode="modal"
       screenOptions={{ cardStyle: { backgroundColor: "#fff" } }}
     >
       <SearchStack.Screen name="Search" component={SearchScreen} />

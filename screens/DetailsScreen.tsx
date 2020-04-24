@@ -5,9 +5,12 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 import { ScrollView, BorderlessButton } from "react-native-gesture-handler";
 import { useSafeArea } from "react-native-safe-area-context";
+
 import * as StyledText from "../components/StyledText";
 import * as SeasonIcons from "../components/SeasonIcons";
 import * as Spacer from "../components/Spacer";
+import SpaceBetween from '../components/SpaceBetween';
+
 import { Season, ProduceItem } from "../types";
 
 type Params = { item: ProduceItem };
@@ -59,18 +62,6 @@ function Facts({ item }: { item: ProduceItem }) {
       <StyledText.Regular>{item.shortDescription}</StyledText.Regular>
       <Spacer.Vertical size={5} />
     </>
-  );
-}
-
-function SpaceBetween({ style, children, size = 5 }: any) {
-  return (
-    <View style={style}>
-      {children.map((child: any, i: number) => (
-        <View key={i} style={{ paddingLeft: i === 0 ? 0 : size }}>
-          {child}
-        </View>
-      ))}
-    </View>
   );
 }
 
