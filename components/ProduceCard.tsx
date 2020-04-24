@@ -7,21 +7,13 @@ import { BaseButton } from "react-native-gesture-handler";
 
 type Props = {
   item: ProduceItem;
+  onPress: () => void;
 };
-
-const Footer = ({ item }: Props) => (
-  <BlurView style={styles.footer} intensity={90} tint="light">
-    <StyledText.Title>{item.name}</StyledText.Title>
-    <StyledText.Regular style={{ fontSize: 14 }}>
-      {item.shortDescription}
-    </StyledText.Regular>
-  </BlurView>
-);
 
 const PRESSED_OPACITY = 0.05;
 const DEFAULT_OPACITY = 0.25;
 
-export default function ProduceCard({ item }: Props) {
+export default function ProduceCard({ item, onPress }: Props) {
   const opacity = React.useRef(new Animated.Value(DEFAULT_OPACITY)).current;
   const handleActiveStateChange = React.useCallback(
     (active) => {
@@ -33,7 +25,10 @@ export default function ProduceCard({ item }: Props) {
 
   return (
     <Animated.View style={[styles.shadow, { shadowOpacity: opacity }]}>
-      <BaseButton onActiveStateChange={handleActiveStateChange}>
+      <BaseButton
+        onActiveStateChange={handleActiveStateChange}
+        onPress={onPress}
+      >
         <View style={styles.container}>
           <View style={{ overflow: "hidden", flex: 1 }}>
             <Image
@@ -48,6 +43,15 @@ export default function ProduceCard({ item }: Props) {
     </Animated.View>
   );
 }
+
+const Footer = ({ item }: { item: ProduceItem }) => (
+  <BlurView style={styles.footer} intensity={90} tint="light">
+    <StyledText.Title>{item.name}</StyledText.Title>
+    <StyledText.Regular style={{ fontSize: 14 }}>
+      {item.shortDescription}
+    </StyledText.Regular>
+  </BlurView>
+);
 
 const styles = StyleSheet.create({
   container: {

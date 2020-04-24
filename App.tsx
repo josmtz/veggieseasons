@@ -1,9 +1,12 @@
 import React from "react";
 import { useFonts } from "@use-expo/font";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { AppLoading } from "expo";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { enableScreens } from 'react-native-screens';
 import Navigation from "./Navigation";
+
+enableScreens();
 
 const CustomFonts = {
   "NotoSans-Bold": require("./assets/fonts/NotoSans-Bold.ttf"),
@@ -11,6 +14,7 @@ const CustomFonts = {
   "NotoSans-Italic": require("./assets/fonts/NotoSans-Italic.ttf"),
   "NotoSans-Regular": require("./assets/fonts/NotoSans-Regular.ttf"),
   ...Ionicons.font,
+  ...FontAwesome5.font,
 };
 
 export default function App() {
